@@ -32,12 +32,12 @@ public class MainActivity extends AppCompatActivity {
         operazioni = new ArrayList<String>();
 
         numero = (EditText) findViewById(R.id.numero);
-        bottonePiu= (Button) findViewById(R.id.bottonePiu);
-        bottoneMeno= (Button) findViewById(R.id.bottoneMeno);
-        bottoneDiviso= (Button) findViewById(R.id.bottoneDiviso);
-        bottonePer= (Button) findViewById(R.id.bottonePer);
-        bottoneUguale= (Button) findViewById(R.id.bottoneUguale);
-        risultato= (TextView) findViewById(R.id.risultato);
+        bottonePiu = (Button) findViewById(R.id.bottonePiu);
+        bottoneMeno = (Button) findViewById(R.id.bottoneMeno);
+        bottoneDiviso = (Button) findViewById(R.id.bottoneDiviso);
+        bottonePer = (Button) findViewById(R.id.bottonePer);
+        bottoneUguale = (Button) findViewById(R.id.bottoneUguale);
+        risultato = (TextView) findViewById(R.id.risultato);
 
 
         bottonePiu.setOnClickListener(new View.OnClickListener(){
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (checkResult()) {
 
-                    for(int i = 0;i <= numeri.size();i++){
+                    for(int i = 0; i <= numeri.size(); i++){
                         if(i%2 == 0 && i != 0) {
                             switch (operazioni.get(i-2)) {
                                 case "+": res += (numeri.get(i-2) + numeri.get(i-1));
@@ -93,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
                                     break;
                                 case "-": res -= numeri.get(i-1);
                                     break;
-                                case "/": res /= numeri.get(i-1);
+                                case "/": res = res / numeri.get(i-1);
                                     break;
-                                case "*": res *= numeri.get(i-1);
+                                case "*": res = res * numeri.get(i-1);
                                     break;
                             }
                         }
@@ -111,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
 
     private void checkNumber (){
         if(numero.getText().toString().isEmpty()){
@@ -144,20 +143,25 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean checkResult (){
         boolean result;
+        //se il numero è vuoto mostro un Toast
         if(numero.getText().toString().isEmpty()){
             Context context = MainActivity.this;
             String textToShow = "Not a Number";
             Toast.makeText(context, textToShow, Toast.LENGTH_SHORT).show();
+            //set l'array dei numeri a 0.0
             for(int i = 0; i < numeri.size(); i++) {
                 numeri.set(i,0.0);
             }
+            //set l'array delle operazioni a ""
             for(int i = 0; i < operazioni.size(); i++){
                 operazioni.set(i, "");
             }
             res = 0.0;
             risultato.setText("");
             result = false;
-        }else{
+        }
+        //altrimenti aggiungo il numero nell'array dei numeri
+        else{
             numeri.add(Double.parseDouble(numero.getText().toString()));
             result = true;
         }
