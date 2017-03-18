@@ -2,169 +2,257 @@ package com.example.michael.firstproject;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.*;
 import android.view.*;
-import android.content.Context;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText numero;
+    ArrayList<String> original_operation;
     TextView risultato;
-    Button bottonePiu;
-    Button bottoneUguale;
-    Button bottoneDiviso;
-    Button bottonePer;
-    Button bottoneMeno;
-    double res;
-    String operazione;
 
-    ArrayList<Double> numeri;
-    ArrayList<String> operazioni;
+    Button  bottonePiu,
+            bottoneMen,
+            bottonePer,
+            bottoneDiv,
+            bottoneUgu,
+            bottoneDel,
+            bottone0,
+            bottone1,
+            bottone2,
+            bottone3,
+            bottone4,
+            bottone5,
+            bottone6,
+            bottone7,
+            bottone8,
+            bottone9;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        numeri = new ArrayList<Double>();
-        operazioni = new ArrayList<String>();
+        original_operation = new ArrayList<String>();
 
-        numero = (EditText) findViewById(R.id.numero);
-        bottonePiu = (Button) findViewById(R.id.bottonePiu);
-        bottoneMeno = (Button) findViewById(R.id.bottoneMeno);
-        bottoneDiviso = (Button) findViewById(R.id.bottoneDiviso);
-        bottonePer = (Button) findViewById(R.id.bottonePer);
-        bottoneUguale = (Button) findViewById(R.id.bottoneUguale);
         risultato = (TextView) findViewById(R.id.risultato);
 
+        bottone0 = (Button) findViewById(R.id.bottone0);
+        bottone1 = (Button) findViewById(R.id.bottone1);
+        bottone2 = (Button) findViewById(R.id.bottone2);
+        bottone3 = (Button) findViewById(R.id.bottone3);
+        bottone4 = (Button) findViewById(R.id.bottone4);
+        bottone5 = (Button) findViewById(R.id.bottone5);
+        bottone6 = (Button) findViewById(R.id.bottone6);
+        bottone7 = (Button) findViewById(R.id.bottone7);
+        bottone8 = (Button) findViewById(R.id.bottone8);
+        bottone9 = (Button) findViewById(R.id.bottone9);
 
+        bottonePiu = (Button) findViewById(R.id.bottonePiu);
+        bottoneMen = (Button) findViewById(R.id.bottoneMeno);
+        bottoneDiv = (Button) findViewById(R.id.bottoneDiviso);
+        bottonePer = (Button) findViewById(R.id.bottonePer);
+        bottoneUgu = (Button) findViewById(R.id.bottoneUguale);
+        bottoneDel = (Button) findViewById(R.id.bottoneDel);
         bottonePiu.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                operazione = "piu";
-                checkNumber();
+                risultato.append(" +");
+                original_operation.add("+");
             }
         });
 
-        bottoneMeno.setOnClickListener(new View.OnClickListener(){
+        bottoneMen.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                checkNumber();
-                operazione = "meno";
+                risultato.append(" -");
+                original_operation.add("-");
             }
         });
 
-        bottoneDiviso.setOnClickListener(new View.OnClickListener(){
+        bottoneDiv.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                checkNumber();
-                operazione="diviso";
+                risultato.append(" /");
+                original_operation.add("/");
             }
         });
 
         bottonePer.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                checkNumber();
-                operazione="per";
+                risultato.append(" *");
+                original_operation.add("*");
             }
         });
 
-        bottoneUguale.setOnClickListener(new View.OnClickListener(){
+        bottone0.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                risultato.append("0");
+                original_operation.add("0");
+            }
+        });
+
+        bottone1.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                risultato.append("1");
+                original_operation.add("1");
+            }
+        });
+
+        bottone2.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                risultato.append("2");
+                original_operation.add("2");
+            }
+        });
+
+        bottone3.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                risultato.append("3");
+                original_operation.add("3");
+            }
+        });
+
+        bottone4.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                risultato.append("4");
+                original_operation.add("4");
+            }
+        });
+
+        bottone5.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                risultato.append("5");
+                original_operation.add("5");
+            }
+        });
+
+        bottone6.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                risultato.append("6");
+                original_operation.add("6");
+            }
+        });
+
+        bottone7.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                risultato.append("7");
+                original_operation.add("7");
+            }
+        });
+
+        bottone8.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                risultato.append("8");
+                original_operation.add("8");
+            }
+        });
+
+        bottone9.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                risultato.append("9");
+                original_operation.add("9");
+            }
+        });
+
+        bottoneUgu.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
 
-                if (checkResult()) {
 
-                    for(int i = 0; i <= numeri.size(); i++){
-                        if(i%2 == 0 && i != 0) {
-                            switch (operazioni.get(i-2)) {
-                                case "+": res += (numeri.get(i-2) + numeri.get(i-1));
-                                    break;
-                                case "-": res += (numeri.get(i-2) - numeri.get(i-1));
-                                    break;
-                                case "/": res += (numeri.get(i-2) / numeri.get(i-1));
-                                    break;
-                                case "*": res += (numeri.get(i-2) * numeri.get(i-1));
-                                    break;
-                            }
-                        }
-
-                        if(i%2 != 0 && i > 2) {
-                            switch (operazioni.get(i-1)) {
-                                case "+": res += numeri.get(i-1);
-                                    break;
-                                case "-": res -= numeri.get(i-1);
-                                    break;
-                                case "/": res = res / numeri.get(i-1);
-                                    break;
-                                case "*": res = res * numeri.get(i-1);
-                                    break;
-                            }
-                        }
-
+                for(int i=0; i<original_operation.size(); i++){
+                    Log.v(getPackageName(),original_operation.get(i).toString());
+                    if(Character.isDigit(original_operation.get(i).charAt(0))) {
+                        Log.v(getPackageName(), "digit founded");
                     }
-
-                    numero.setText("");
-                    risultato.setText(""+res);
-                    res = 0.0;
                 }
+                risultato.setText(""+parseOperation(original_operation));
+            }
+        });
+        bottoneDel.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Log.v(getPackageName(), "Del HIT");
+                risultato.setText("");
+                original_operation.clear();
 
             }
         });
 
     }
 
-    private void checkNumber (){
-        if(numero.getText().toString().isEmpty()){
-            Context context = MainActivity.this;
-            String textToShow = "Not a Number";
-            Toast.makeText(context, textToShow, Toast.LENGTH_SHORT).show();
-            for(int i = 0; i < numeri.size(); i++) {
-                numeri.set(i,0.0);
+    public float parseOperation(ArrayList<String> input){
+        ArrayList<String> parsed_operation = new ArrayList<String>();
+        //indice per gestire l'ArrayList
+        int index=0;
+        for(int i = 0; i< input.size(); i++){
+
+            if(Character.isDigit(input.get(i).charAt(0))){
+                parsed_operation.add(index, ""+ input.get(i));
+                Log.v(getPackageName(), "found digit: "+ input.get(i));
+            }else{
+                if(i!=0) {
+                    Log.v(getPackageName(), "before ++index, index= "+index);
+                    ++index;
+                    Log.v(getPackageName(), "after ++index, index= "+index);
+                    switch (input.get(i)) {
+                        case "+":
+                            Log.v(getPackageName(), "found operand: +");
+                            parsed_operation.add(index, "+");
+                            break;
+                        case "-":
+                            parsed_operation.add(index, "-");
+                            break;
+                        case "*":
+                            parsed_operation.add(index, "*");
+                            break;
+                        case "/":
+                            parsed_operation.add(index, "/");
+                            break;
+                    }
+                    ++index;
+                }
             }
-            for(int i = 0; i < operazioni.size(); i++){
-                operazioni.set(i, "");
-            }
-            res = 0.0;
-            risultato.setText("");
-        }else{
-            numeri.add(Double.parseDouble(numero.getText().toString()));
-            switch (operazione) {
-                case "piu": operazioni.add("+");
-                    break;
-                case "meno": operazioni.add("-");
-                    break;
-                case "diviso": operazioni.add("/");
-                    break;
-                case "per": operazioni.add("*");
-                    break;
-            }
-            numero.setText("");
         }
+        Log.v(getPackageName(), "pos 0: "+parsed_operation.get(0));
+        Log.v(getPackageName(), "pos 1: "+parsed_operation.get(1));
+        Log.v(getPackageName(), "pos 2: "+parsed_operation.get(2));
+        return execOperation(parsed_operation);
+
     }
 
-    private boolean checkResult (){
-        boolean result;
-        //se il numero è vuoto mostro un Toast
-        if(numero.getText().toString().isEmpty()){
-            Context context = MainActivity.this;
-            String textToShow = "Not a Number";
-            Toast.makeText(context, textToShow, Toast.LENGTH_SHORT).show();
-            //set l'array dei numeri a 0.0
-            for(int i = 0; i < numeri.size(); i++) {
-                numeri.set(i,0.0);
-            }
-            //set l'array delle operazioni a ""
-            for(int i = 0; i < operazioni.size(); i++){
-                operazioni.set(i, "");
-            }
-            res = 0.0;
-            risultato.setText("");
-            result = false;
+    public float execOperation(ArrayList<String> arLiStr){
+
+        int opr1, opr2;
+        float result = 0;
+        if (arLiStr.size() < 2) {
+            Log.v(getPackageName(), "size error");
+            return 0;
         }
-        //altrimenti aggiungo il numero nell'array dei numeri
-        else{
-            numeri.add(Double.parseDouble(numero.getText().toString()));
-            result = true;
-        }
+
+        Log.v(getPackageName(), "pos 0: "+arLiStr.get(0));
+        Log.v(getPackageName(), "pos 1: "+arLiStr.get(1));
+        Log.v(getPackageName(), "pos 2: "+arLiStr.get(2));
+
+        //for(int i=0; i<arLiStr.size()-1; i++){
+            opr1 = Integer.parseInt((arLiStr.get(0)));
+            opr2 = Integer.parseInt((arLiStr.get(2)));
+            Log.v(getPackageName(), "before switch");
+            switch (original_operation.get(1)) {
+                case "+":
+                    Log.v(getPackageName(), "adding operation");
+                    result = opr1 + opr2;
+                    break;
+                case "-":
+                    result = opr1 - opr2;
+                    break;
+                case "*":
+                    result = opr1 * opr2;
+                    break;
+                case "/":
+                    result = opr1 / opr2;
+                    break;
+            }
+        //}
         return result;
     }
 
