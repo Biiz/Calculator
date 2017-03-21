@@ -37,7 +37,7 @@
                 android:textSize="22sp"
                 android:text="+"> </Button>
             <Button
-                android:id="@+id/bottoneMeno"
+                android:id="@+id/bottoneMen"
                 android:layout_width="65sp"
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
@@ -49,7 +49,7 @@
                 android:textSize="22sp"
                 android:text="*"> </Button>
             <Button
-                android:id="@+id/bottoneDiviso"
+                android:id="@+id/bottoneDiv"
                 android:layout_width="65sp"
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
@@ -68,7 +68,7 @@
                 android:textSize="22sp"/>
 
             <Button
-                android:id="@+id/bottoneUguale"
+                android:id="@+id/bottoneUgu"
                 android:layout_width="80sp"
                 android:layout_height="wrap_content"
                 android:text="="

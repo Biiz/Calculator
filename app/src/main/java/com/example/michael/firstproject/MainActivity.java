@@ -8,7 +8,7 @@ import android.view.*;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements  View.OnClickListener{
 
     ArrayList<String> original_operation;
     TextView risultato;
@@ -42,124 +42,122 @@ public class MainActivity extends AppCompatActivity {
         risultato = (TextView) findViewById(R.id.risultato);
 
         bottone0 = (Button) findViewById(R.id.bottone0);
+        bottone0.setOnClickListener(this);
         bottone1 = (Button) findViewById(R.id.bottone1);
+        bottone1.setOnClickListener(this);
         bottone2 = (Button) findViewById(R.id.bottone2);
+        bottone2.setOnClickListener(this);
         bottone3 = (Button) findViewById(R.id.bottone3);
+        bottone3.setOnClickListener(this);
         bottone4 = (Button) findViewById(R.id.bottone4);
+        bottone4.setOnClickListener(this);
         bottone5 = (Button) findViewById(R.id.bottone5);
+        bottone5.setOnClickListener(this);
         bottone6 = (Button) findViewById(R.id.bottone6);
+        bottone6.setOnClickListener(this);
         bottone7 = (Button) findViewById(R.id.bottone7);
+        bottone7.setOnClickListener(this);
         bottone8 = (Button) findViewById(R.id.bottone8);
+        bottone8.setOnClickListener(this);
         bottone9 = (Button) findViewById(R.id.bottone9);
+        bottone9.setOnClickListener(this);
 
         bottonePiu = (Button) findViewById(R.id.bottonePiu);
-        bottoneMen = (Button) findViewById(R.id.bottoneMeno);
-        bottoneDiv = (Button) findViewById(R.id.bottoneDiviso);
+        bottonePiu.setOnClickListener(this);
+        bottoneMen = (Button) findViewById(R.id.bottoneMen);
+        bottoneMen.setOnClickListener(this);
+        bottoneDiv = (Button) findViewById(R.id.bottoneDiv);
+        bottoneDiv.setOnClickListener(this);
         bottonePer = (Button) findViewById(R.id.bottonePer);
-        bottoneUgu = (Button) findViewById(R.id.bottoneUguale);
+        bottonePer.setOnClickListener(this);
+        bottoneUgu = (Button) findViewById(R.id.bottoneUgu);
+        bottoneUgu.setOnClickListener(this);
         bottoneDel = (Button) findViewById(R.id.bottoneDel);
-        bottonePiu.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                risultato.append(" +");
-                original_operation.add("+");
-            }
-        });
+        bottoneDel.setOnClickListener(this);
 
-        bottoneMen.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                risultato.append(" -");
-                original_operation.add("-");
-            }
-        });
 
-        bottoneDiv.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                risultato.append(" /");
-                original_operation.add("/");
-            }
-        });
+    }
 
-        bottonePer.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                risultato.append(" *");
-                original_operation.add("*");
-            }
-        });
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
 
-        bottone0.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+            case R.id.bottone0:
                 risultato.append("0");
                 original_operation.add("0");
-            }
-        });
+                break;
 
-        bottone1.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+            case R.id.bottone1:
                 risultato.append("1");
                 original_operation.add("1");
-            }
-        });
+                break;
 
-        bottone2.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+            case R.id.bottone2:
                 risultato.append("2");
                 original_operation.add("2");
-            }
-        });
+                break;
 
-        bottone3.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+            case R.id.bottone3:
                 risultato.append("3");
                 original_operation.add("3");
-            }
-        });
+                break;
 
-        bottone4.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+            case R.id.bottone4:
                 risultato.append("4");
                 original_operation.add("4");
-            }
-        });
+                break;
 
-        bottone5.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+            case R.id.bottone5:
                 risultato.append("5");
                 original_operation.add("5");
-            }
-        });
+                break;
 
-        bottone6.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+            case R.id.bottone6:
                 risultato.append("6");
                 original_operation.add("6");
-            }
-        });
+                break;
 
-        bottone7.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+            case R.id.bottone7:
                 risultato.append("7");
                 original_operation.add("7");
-            }
-        });
+                break;
 
-        bottone8.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+            case R.id.bottone8:
                 risultato.append("8");
                 original_operation.add("8");
-            }
-        });
+                break;
 
-        bottone9.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+            case R.id.bottone9:
                 risultato.append("9");
                 original_operation.add("9");
-            }
-        });
+                break;
 
-        bottoneUgu.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+            case R.id.bottonePiu:
+                risultato.append(" +");
+                original_operation.add("+");
+                break;
 
+            case R.id.bottoneMen:
+                risultato.append(" -");
+                original_operation.add("-");
+                break;
+            case R.id.bottonePer:
+                risultato.append(" *");
+                original_operation.add("*");
+                break;
 
+            case R.id.bottoneDiv:
+                risultato.append(" /");
+                original_operation.add("/");
+                break;
+
+            case R.id.bottoneDel:
+                Log.v(getPackageName(), "Del HIT");
+                risultato.setText("");
+                original_operation.clear();
+                break;
+
+            case R.id.bottoneUgu:
                 for(int i=0; i<original_operation.size(); i++){
                     Log.v(getPackageName(),original_operation.get(i).toString());
                     if(Character.isDigit(original_operation.get(i).charAt(0))) {
@@ -167,17 +165,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 risultato.setText(""+parseOperation(original_operation));
-            }
-        });
-        bottoneDel.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                Log.v(getPackageName(), "Del HIT");
-                risultato.setText("");
-                original_operation.clear();
+                break;
 
-            }
-        });
-
+            default:
+                break;
+        }
     }
 
     public float parseOperation(ArrayList<String> input){
