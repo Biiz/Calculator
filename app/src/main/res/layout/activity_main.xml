@@ -8,64 +8,91 @@
     tools:context="com.example.michael.firstproject.MainActivity"
     android:weightSum="1">
 
-
-    <TextView
-        android:id="@+id/risultato"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/black"
-        android:textSize="28sp"
-        android:layout_marginTop="16sp"
-        android:paddingTop="150sp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:layout_marginTop="16sp">
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/onGoingOperation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16sp"
+            android:paddingTop="10sp"
+            android:textColor="@android:color/black"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/risultato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16sp"
+            android:paddingTop="10sp"
+            android:textColor="@android:color/black"
+            android:textSize="28sp" />
+
+        </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16sp"
+        android:layout_weight="3.59"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/bottonePiu"
                 android:layout_width="65sp"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="+"> </Button>
+                android:text="+"
+                android:textSize="22sp"></Button>
+
             <Button
                 android:id="@+id/bottoneMen"
                 android:layout_width="65sp"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="-"> </Button>
+                android:text="-"
+                android:textSize="22sp"></Button>
+
             <Button
                 android:id="@+id/bottonePer"
                 android:layout_width="65sp"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="*"> </Button>
+                android:text="*"
+                android:textSize="22sp"></Button>
+
             <Button
                 android:id="@+id/bottoneDiv"
                 android:layout_width="65sp"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="/"> </Button>
+                android:text="/"
+                android:textSize="22sp"></Button>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/bottoneDel"
                 android:layout_width="80sp"
                 android:layout_height="wrap_content"
                 android:text="DEL"
-                android:textSize="22sp"/>
+                android:textSize="22sp" />
 
             <Button
                 android:id="@+id/bottoneUgu"
@@ -74,94 +101,107 @@
                 android:text="="
                 android:textSize="22sp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16sp"
             android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:layout_marginTop="16sp">
+            android:orientation="horizontal">
+
             <Button
                 android:id="@+id/bottone1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="1"> </Button>
+                android:text="1"
+                android:textSize="22sp"></Button>
+
             <Button
                 android:id="@+id/bottone2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="2"> </Button>
+                android:text="2"
+                android:textSize="22sp"></Button>
+
             <Button
                 android:id="@+id/bottone3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="3"> </Button>
+                android:text="3"
+                android:textSize="22sp"></Button>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16sp"
             android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:layout_marginTop="16sp">
+            android:orientation="horizontal">
+
             <Button
                 android:id="@+id/bottone4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="4"> </Button>
+                android:text="4"
+                android:textSize="22sp"></Button>
+
             <Button
                 android:id="@+id/bottone5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="5"> </Button>
+                android:text="5"
+                android:textSize="22sp"></Button>
+
             <Button
                 android:id="@+id/bottone6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="6"> </Button>
+                android:text="6"
+                android:textSize="22sp"></Button>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16sp"
             android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:layout_marginTop="16sp">
+            android:orientation="horizontal">
+
             <Button
                 android:id="@+id/bottone7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="7"> </Button>
+                android:text="7"
+                android:textSize="22sp"></Button>
+
             <Button
                 android:id="@+id/bottone8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="8"> </Button>
+                android:text="8"
+                android:textSize="22sp"></Button>
+
             <Button
                 android:id="@+id/bottone9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="9"> </Button>
+                android:text="9"
+                android:textSize="22sp"></Button>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16sp"
             android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:layout_marginTop="16sp">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/bottone0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="0"> </Button>
+                android:text="0"
+                android:textSize="22sp"></Button>
 
         </LinearLayout>
     </LinearLayout>

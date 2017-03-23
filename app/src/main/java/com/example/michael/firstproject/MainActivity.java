@@ -1,5 +1,6 @@
 package com.example.michael.firstproject;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,10 +9,15 @@ import android.view.*;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements  View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    ArrayList<String> original_operation;
-    TextView risultato;
+    int op1 = -1;
+    int op2 = -1;
+    float result;
+    char operation;
+
+    TextView onGoingOperation,
+             risultato;
 
     Button  bottonePiu,
             bottoneMen,
@@ -31,14 +37,12 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
             bottone9;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        original_operation = new ArrayList<String>();
-
+        onGoingOperation = (TextView) findViewById((R.id.onGoingOperation));
         risultato = (TextView) findViewById(R.id.risultato);
 
         bottone0 = (Button) findViewById(R.id.bottone0);
@@ -75,6 +79,19 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         bottoneDel = (Button) findViewById(R.id.bottoneDel);
         bottoneDel.setOnClickListener(this);
 
+        //
+        bottoneDel.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                onGoingOperation.setText("");
+                risultato.setText("");
+                op1 = -1;
+                op2 = -1;
+
+                return true;
+            }
+        });
+
 
     }
 
@@ -84,87 +101,116 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
 
             case R.id.bottone0:
                 risultato.append("0");
-                original_operation.add("0");
                 break;
 
             case R.id.bottone1:
                 risultato.append("1");
-                original_operation.add("1");
                 break;
 
             case R.id.bottone2:
                 risultato.append("2");
-                original_operation.add("2");
                 break;
 
             case R.id.bottone3:
                 risultato.append("3");
-                original_operation.add("3");
                 break;
 
             case R.id.bottone4:
                 risultato.append("4");
-                original_operation.add("4");
                 break;
 
             case R.id.bottone5:
                 risultato.append("5");
-                original_operation.add("5");
                 break;
 
             case R.id.bottone6:
                 risultato.append("6");
-                original_operation.add("6");
                 break;
 
             case R.id.bottone7:
                 risultato.append("7");
-                original_operation.add("7");
                 break;
 
             case R.id.bottone8:
                 risultato.append("8");
-                original_operation.add("8");
                 break;
 
             case R.id.bottone9:
                 risultato.append("9");
-                original_operation.add("9");
                 break;
 
             case R.id.bottonePiu:
-                risultato.append(" +");
-                original_operation.add("+");
+                op1 = Integer.parseInt(risultato.getText().toString());
+                risultato.setText("");
+                onGoingOperation.append(op1+"+");
+                operation = '+';
                 break;
 
             case R.id.bottoneMen:
-                risultato.append(" -");
-                original_operation.add("-");
+                op1 = Integer.parseInt(risultato.getText().toString());
+                risultato.setText("");
+                onGoingOperation.append(op1+"-");
+                operation = '-';
                 break;
+
             case R.id.bottonePer:
-                risultato.append(" *");
-                original_operation.add("*");
+                op1 = Integer.parseInt(risultato.getText().toString());
+                risultato.setText("");
+                onGoingOperation.append(op1+"*");
+                operation = '*';
                 break;
 
             case R.id.bottoneDiv:
-                risultato.append(" /");
-                original_operation.add("/");
+                op1 = Integer.parseInt(risultato.getText().toString());
+                risultato.setText("");
+                onGoingOperation.append(op1+"/");
+                operation = '/';
                 break;
 
             case R.id.bottoneDel:
-                Log.v(getPackageName(), "Del HIT");
                 risultato.setText("");
-                original_operation.clear();
                 break;
 
             case R.id.bottoneUgu:
-                for(int i=0; i<original_operation.size(); i++){
-                    Log.v(getPackageName(),original_operation.get(i).toString());
-                    if(Character.isDigit(original_operation.get(i).charAt(0))) {
-                        Log.v(getPackageName(), "digit founded");
-                    }
+                if (op1 == -1){
+                    setToast("EH VOLEVII");
+                    break;
                 }
-                risultato.setText(""+parseOperation(original_operation));
+                op2 = Integer.parseInt(risultato.getText().toString());
+                risultato.setText("");
+                onGoingOperation.append(""+op2);
+                switch (operation){
+
+                    case '+':
+                        result = op1 + op2;
+                        onGoingOperation.append(" = " +result);
+                        break;
+
+                    case '-':
+                        result = op1 - op2;
+                        onGoingOperation.append(" = " +result);
+                        break;
+
+                    case '*':
+                        result = op1 * op2;
+                        onGoingOperation.append(" = " +result);
+                        break;
+
+                    case '/':
+                        if(op2 == 0 && op1 == 0){
+                            setToast("Nope");
+                            bottoneDel.performLongClick();
+                            break;
+                        }
+                        result = op1 / (float) op2;
+                        onGoingOperation.append(" = " +result);
+                        break;
+
+                    default:
+                        break;
+
+                }
+
                 break;
 
             default:
@@ -172,81 +218,15 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         }
     }
 
-    public float parseOperation(ArrayList<String> input){
-        ArrayList<String> parsed_operation = new ArrayList<String>();
-        //indice per gestire l'ArrayList
-        int index=0;
-        for(int i = 0; i< input.size(); i++){
+    //create a toast getting a message input
+    public void setToast(String message){
+        Context context = getApplicationContext();
+        CharSequence text = ""+message;
+        int duration = Toast.LENGTH_SHORT;
 
-            if(Character.isDigit(input.get(i).charAt(0))){
-                parsed_operation.add(index, ""+ input.get(i));
-                Log.v(getPackageName(), "found digit: "+ input.get(i));
-            }else{
-                if(i!=0) {
-                    Log.v(getPackageName(), "before ++index, index= "+index);
-                    ++index;
-                    Log.v(getPackageName(), "after ++index, index= "+index);
-                    switch (input.get(i)) {
-                        case "+":
-                            Log.v(getPackageName(), "found operand: +");
-                            parsed_operation.add(index, "+");
-                            break;
-                        case "-":
-                            parsed_operation.add(index, "-");
-                            break;
-                        case "*":
-                            parsed_operation.add(index, "*");
-                            break;
-                        case "/":
-                            parsed_operation.add(index, "/");
-                            break;
-                    }
-                    ++index;
-                }
-            }
-        }
-        Log.v(getPackageName(), "pos 0: "+parsed_operation.get(0));
-        Log.v(getPackageName(), "pos 1: "+parsed_operation.get(1));
-        Log.v(getPackageName(), "pos 2: "+parsed_operation.get(2));
-        return execOperation(parsed_operation);
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
 
     }
-
-    public float execOperation(ArrayList<String> arLiStr){
-
-        int opr1, opr2;
-        float result = 0;
-        if (arLiStr.size() < 2) {
-            Log.v(getPackageName(), "size error");
-            return 0;
-        }
-
-        Log.v(getPackageName(), "pos 0: "+arLiStr.get(0));
-        Log.v(getPackageName(), "pos 1: "+arLiStr.get(1));
-        Log.v(getPackageName(), "pos 2: "+arLiStr.get(2));
-
-        //for(int i=0; i<arLiStr.size()-1; i++){
-            opr1 = Integer.parseInt((arLiStr.get(0)));
-            opr2 = Integer.parseInt((arLiStr.get(2)));
-            Log.v(getPackageName(), "before switch");
-            switch (original_operation.get(1)) {
-                case "+":
-                    Log.v(getPackageName(), "adding operation");
-                    result = opr1 + opr2;
-                    break;
-                case "-":
-                    result = opr1 - opr2;
-                    break;
-                case "*":
-                    result = opr1 * opr2;
-                    break;
-                case "/":
-                    result = opr1 / opr2;
-                    break;
-            }
-        //}
-        return result;
-    }
-
 
 }
