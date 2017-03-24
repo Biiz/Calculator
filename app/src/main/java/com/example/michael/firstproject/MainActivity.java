@@ -9,17 +9,19 @@ import android.view.*;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     int op1 = -1;
     int op2 = -1;
     float result;
     char operation;
 
-    TextView onGoingOperation,
-             risultato;
+    ScrollView scrollResult;
 
-    Button  bottonePiu,
+    TextView onGoingOperation,
+            risultato;
+
+    Button bottonePiu,
             bottoneMen,
             bottonePer,
             bottoneDiv,
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        scrollResult = (ScrollView) findViewById(R.id.scrollResult);
 
         onGoingOperation = (TextView) findViewById((R.id.onGoingOperation));
         risultato = (TextView) findViewById(R.id.risultato);
@@ -142,28 +146,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.bottonePiu:
                 op1 = Integer.parseInt(risultato.getText().toString());
                 risultato.setText("");
-                onGoingOperation.append(op1+"+");
+                onGoingOperation.append("\n" + op1 + "+");
                 operation = '+';
                 break;
 
             case R.id.bottoneMen:
                 op1 = Integer.parseInt(risultato.getText().toString());
                 risultato.setText("");
-                onGoingOperation.append(op1+"-");
+                onGoingOperation.append("\n" + op1 + "-");
                 operation = '-';
                 break;
 
             case R.id.bottonePer:
                 op1 = Integer.parseInt(risultato.getText().toString());
                 risultato.setText("");
-                onGoingOperation.append(op1+"*");
+                onGoingOperation.append("\n" + op1 + "*");
                 operation = '*';
                 break;
 
             case R.id.bottoneDiv:
                 op1 = Integer.parseInt(risultato.getText().toString());
                 risultato.setText("");
-                onGoingOperation.append(op1+"/");
+                onGoingOperation.append("\n" + op1 + "/");
                 operation = '/';
                 break;
 
@@ -172,44 +176,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.bottoneUgu:
-                if (op1 == -1){
+                if (op1 == -1) {
                     setToast("EH VOLEVII");
                     break;
                 }
                 op2 = Integer.parseInt(risultato.getText().toString());
                 risultato.setText("");
-                onGoingOperation.append(""+op2);
-                switch (operation){
+                onGoingOperation.append("" + op2);
+                switch (operation) {
 
                     case '+':
                         result = op1 + op2;
-                        onGoingOperation.append(" = " +result);
+                        onGoingOperation.append(" = " + result);
                         break;
 
                     case '-':
                         result = op1 - op2;
-                        onGoingOperation.append(" = " +result);
+                        onGoingOperation.append(" = " + result);
                         break;
 
                     case '*':
                         result = op1 * op2;
-                        onGoingOperation.append(" = " +result);
+                        onGoingOperation.append(" = " + result);
                         break;
 
                     case '/':
-                        if(op2 == 0 && op1 == 0){
+                        if (op2 == 0 && op1 == 0) {
                             setToast("Nope");
                             bottoneDel.performLongClick();
                             break;
                         }
                         result = op1 / (float) op2;
-                        onGoingOperation.append(" = " +result);
+                        onGoingOperation.append(" = " + result);
+
+
+
                         break;
 
                     default:
                         break;
 
                 }
+                scrollResult.fullScroll(ScrollView.FOCUS_DOWN);
 
                 break;
 
@@ -219,9 +227,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //create a toast getting a message input
-    public void setToast(String message){
+    public void setToast(String message) {
         Context context = getApplicationContext();
-        CharSequence text = ""+message;
+        CharSequence text = "" + message;
         int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
