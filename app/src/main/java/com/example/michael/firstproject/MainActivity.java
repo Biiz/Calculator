@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             bottone8,
             bottone9;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bottoneDel = (Button) findViewById(R.id.bottoneDel);
         bottoneDel.setOnClickListener(this);
 
-        //
         bottoneDel.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -95,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
             }
         });
-
 
     }
 
@@ -188,16 +185,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case '+':
                         result = op1 + op2;
                         onGoingOperation.append(" = " + result);
+                        scrollResult.fullScroll(ScrollView.FOCUS_DOWN);
                         break;
 
                     case '-':
                         result = op1 - op2;
                         onGoingOperation.append(" = " + result);
+                        scrollResult.fullScroll(ScrollView.FOCUS_DOWN);
                         break;
 
                     case '*':
                         result = op1 * op2;
                         onGoingOperation.append(" = " + result);
+                        scrollResult.fullScroll(ScrollView.FOCUS_DOWN);
                         break;
 
                     case '/':
@@ -208,9 +208,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                         result = op1 / (float) op2;
                         onGoingOperation.append(" = " + result);
-
-
-
+                        scrollResult.fullScroll(ScrollView.FOCUS_DOWN);
                         break;
 
                     default:
@@ -218,7 +216,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
                 scrollResult.fullScroll(ScrollView.FOCUS_DOWN);
-
                 break;
 
             default:
@@ -234,7 +231,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
-
     }
 
 }
