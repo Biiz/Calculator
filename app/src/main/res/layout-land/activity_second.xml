@@ -10,16 +10,16 @@
     <TextView
         android:id="@+id/currentNumber"
         android:layout_width="0dp"
-        android:layout_height="28dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_height="41dp"
+        android:layout_marginLeft="0dp"
         android:layout_marginRight="8dp"
         android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/bottoneMen"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintLeft_toLeftOf="@+id/numPad1"
+        app:layout_constraintRight_toLeftOf="@+id/bottoneUgu"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/numPad2" />
 
 
     <Button
@@ -122,7 +122,8 @@
         android:text="0"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.666" />
 
     <Button
         android:id="@+id/bottonePiu"
@@ -130,40 +131,43 @@
         android:layout_height="wrap_content"
         android:text="+"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottoneDel"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/bottoneMen"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/bottoneMen" />
 
     <Button
         android:id="@+id/bottoneMen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"
-        app:layout_constraintTop_toTopOf="@+id/bottonePiu"
-        android:layout_marginTop="0dp"
-        app:layout_constraintLeft_toRightOf="@+id/bottonePiu"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/bottonePer"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottonePer" />
 
     <Button
         android:id="@+id/bottonePer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="*"
-        app:layout_constraintTop_toTopOf="@+id/bottonePiu"
-        android:layout_marginTop="0dp"
-        app:layout_constraintLeft_toRightOf="@+id/bottoneMen"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/bottoneDiv"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="@+id/bottoneDiv"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottoneDiv" />
 
     <Button
         android:id="@+id/bottoneDiv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="/"
-        app:layout_constraintTop_toTopOf="@+id/bottonePiu"
-        android:layout_marginTop="0dp"
-        app:layout_constraintLeft_toRightOf="@+id/bottonePer"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/numPad0"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintLeft_toRightOf="@+id/numPad9"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent" />
 
     <Button
@@ -171,20 +175,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DEL"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/numPad2"
+        app:layout_constraintLeft_toLeftOf="@+id/bottoneUgu"
         android:layout_marginLeft="0dp"
-        app:layout_constraintLeft_toLeftOf="@+id/bottoneMen" />
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottoneUgu" />
 
     <Button
         android:id="@+id/bottoneUgu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="="
-        android:layout_marginTop="0dp"
-        app:layout_constraintTop_toTopOf="@+id/bottoneDel"
-        app:layout_constraintLeft_toRightOf="@+id/bottoneDel"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/bottonePiu"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottonePiu" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
@@ -204,10 +208,10 @@
         android:transcriptMode="alwaysScroll"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/currentOperation">
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintRight_toLeftOf="@+id/currentNumber">
 
         <TextView
             android:id="@+id/operationHistory"
@@ -220,15 +224,15 @@
     <TextView
         android:id="@+id/currentOperation"
         android:layout_width="0dp"
-        android:layout_height="28dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="0dp"
         android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/currentNumber"
+        app:layout_constraintLeft_toLeftOf="@+id/currentNumber"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="@+id/currentNumber"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/currentNumber" />
 
 </android.support.constraint.ConstraintLayout>
